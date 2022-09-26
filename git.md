@@ -15,7 +15,7 @@ ssh-keygen -t rsa #三次回车
 ```bash
 git add . # 提交所有变动文件
 git commit "first commit"
-git remote add origin git@github.com:ai-charlie/TensorRT-lab.git
+git remote add origin git@github.com:ai-charlie/project_name.git
 git branch -M main
 git push -u origin main
 ```

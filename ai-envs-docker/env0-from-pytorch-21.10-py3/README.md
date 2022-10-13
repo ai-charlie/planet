@@ -67,13 +67,14 @@ bash launch.sh
 **docker run**
 
 ```bash
-docker run  --gpus all -p 8889:8889 --shm-size=8gb --ipc=host --ulimit memlock=-1 --ulimit stack=67108864 -v /home/zhanglq/workspace/code/docker:/workspace/code --rm -it nvcr.io/nvidia/pytorch:21.10-py3 jupyter-lab --port=8889 --no-browser --ip 0.0.0.0 --allow-root 
+docker run  --gpus all -p 8889:8889 --shm-size=8gb --ipc=host --ulimit memlock=-1 --ulimit stack=67108864 -v /home/zhanglq/workspace/code/docker:/workspace/code --rm -it nvcr.io/nvidia/pytorch:21.10-py3 jupyter-lab --port=8889 --no-browser --ip 0.0.0.0 --allow-root  
 ```
 
 or
 
+
 ```bash
- docker run  --gpus all -p 8889:8889 --shm-size=8gb --ipc=host --ulimit memlock=-1 --ulimit stack=67108864 -v /home/zhanglq/workspace/code/docker:/workspace/code --rm -it nvcr.io/nvidia/pytorch:21.10-py3-tf2 jupyter-lab --port=8889 --no-browser --ip 0.0.0.0 --allow-root
+docker run --name zhanglq --gpus all --shm-size=8gb --ipc=host --ulimit memlock=-1 --ulimit stack=67108864 -v /home/zhanglq/workspace:/home/zhanglq/workspace -v /home/zhanglq/workspaces:/home/zhanglq/workspaces -it nvcr.io/nvidia/pytorch:21.10-py3-zhanglq
 ```
 
 ### 运行TensorRT8样例

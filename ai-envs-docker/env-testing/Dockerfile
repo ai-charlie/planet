@@ -1,15 +1,14 @@
 # 查看适配tensorrt的cuda版本
 # https://developer.download.nvidia.com/compute/cuda/repos/ubuntu1804/x86_64/
-# ARG CUDA_VERSION=10.2
-ARG CUDA_VERSION=11.4.2
-ARG OS_VERSION=20.04
+ARG CUDA_VERSION=11.4
+ARG OS_VERSION=18.04
 
 
 # 基础镜像
 FROM nvidia/cuda:${CUDA_VERSION}-cudnn8-devel-ubuntu${OS_VERSION}
 LABEL maintainer="zhanglq"
 
-ENV TRT_VERSION 8.4.3.1
+# ENV TRT_VERSION 8.4.3.1
 # ENV TRT_VERSION 8.2.5.1
 SHELL ["/bin/bash", "-c"]
 
@@ -24,12 +23,12 @@ RUN mkdir -p /workspace && chown trtuser /workspace
 
 # Repair the GPG signing key rotation for CUDA repositories
 # https://github.com/NVIDIA/cuda-repo-management/issues/4
-RUN rm /etc/apt/sources.list.d/cuda.list
-RUN rm /etc/apt/sources.list.d/nvidia-ml.list
-RUN apt-key del 7fa2af80
-RUN apt-get update && apt-get install -y --no-install-recommends wget
-RUN wget https://developer.download.nvidia.com/compute/cuda/repos/ubuntu2004/x86_64/cuda-keyring_1.0-1_all.deb
-RUN dpkg -i cuda-keyring_1.0-1_all.deb
+# RUN rm /etc/apt/sources.list.d/cuda.list
+# RUN rm /etc/apt/sources.list.d/nvidia-ml.list
+# RUN apt-key del 7fa2af80
+# RUN apt-get update && apt-get install -y --no-install-recommends wget
+# RUN wget https://developer.download.nvidia.com/compute/cuda/repos/ubuntu2004/x86_64/cuda-keyring_1.0-1_all.deb
+# RUN dpkg -i cuda-keyring_1.0-1_all.deb
 
 # Install requried libraries
 RUN apt-get update && apt-get install -y software-properties-common
@@ -51,7 +50,9 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     fakeroot \
     dh-make \
     build-essential \
-    git-lfs
+    git-lfs \
+    libeigen3-dev
+
 
 # Install python3
 # 软连接 使pip3命令等于pip
@@ -63,6 +64,7 @@ RUN apt-get install -y --no-install-recommends \
     cd /usr/local/bin &&\
     ln -s /usr/bin/python3 python &&\
     ln -s /usr/bin/pip3 pip;
+
 
 # Install TensorRT
 RUN if [ "${CUDA_VERSION}" = "10.2" ] ; then \
@@ -79,9 +81,8 @@ RUN if [ "${CUDA_VERSION}" = "10.2" ] ; then \
     python3-libnvinfer=${v}; \
     fi
 
-
 # 阻止tensorrt自动升级
-# RUN apt-mark hold libnvinfer8 libnvonnxparsers8 libnvparsers8 libnvinfer-plugin8 libnvinfer-dev libnvonnxparsers-dev libnvparsers-dev libnvinfer-plugin-dev python3-libnvinfer
+RUN apt-mark hold libnvinfer8 libnvonnxparsers8 libnvparsers8 libnvinfer-plugin8 libnvinfer-dev libnvonnxparsers-dev libnvparsers-dev libnvinfer-plugin-dev python3-libnvinfer
 
 # 如果想要升级最新版本的tensorrt 
 # sudo apt-mark unhold libnvinfer8 libnvonnxparsers8 libnvparsers8 libnvinfer-plugin8 libnvinfer-dev libnvonnxparsers-dev libnvparsers-dev libnvinfer-plugin-dev python3-libnvinfer
@@ -95,12 +96,15 @@ RUN pip3 install setuptools>=41.0.0
 # Install PyPI packages
 RUN pip3 install --upgrade pip
 RUN pip3 install setuptools>=41.0.0
+
 # Install packages in requirements.txt
 COPY requirements.txt /tmp/requirements.txt
 RUN pip3 install -r /tmp/requirements.txt
 RUN pip3 install jupyter jupyterlab
+
 # Workaround to remove numpy installed with tensorflow
 RUN pip3 install --upgrade numpy
+
 # install packages for jupyter
 RUN pip3 install ipykernel
 RUN pip3 install ipywidgets --trusted-host pypi.org --trusted-host pypi.python.org --trusted-host=files.pythonhosted.org
@@ -108,11 +112,11 @@ RUN jupyter nbextension enable --py widgetsnbextension
 
 
 # Install Cmake
-RUN cd /tmp && \
-    wget https://github.com/Kitware/CMake/releases/download/v3.14.4/cmake-3.14.4-Linux-x86_64.sh && \
-    chmod +x cmake-3.14.4-Linux-x86_64.sh && \
-    ./cmake-3.14.4-Linux-x86_64.sh --prefix=/usr/local --exclude-subdir --skip-license && \
-    rm ./cmake-3.14.4-Linux-x86_64.sh
+RUN cmake_version="3.23.4" && cd /tmp && \
+    wget https://github.com/Kitware/CMake/releases/download/v${cmake_version}/cmake-${cmake_version}-Linux-x86_64.sh && \
+    chmod +x cmake-${cmake_version}-Linux-x86_64.sh && \
+    ./cmake-${cmake_version}-Linux-x86_64.sh --prefix=/usr/local --exclude-subdir --skip-license && \
+    rm ./cmake-${cmake_version}-Linux-x86_64.sh
 
 # # Download NGC client
 # RUN cd /usr/local/bin && wget https://ngc.nvidia.com/downloads/ngccli_cat_linux.zip && unzip ngccli_cat_linux.zip && chmod u+x ngc && rm ngccli_cat_linux.zip ngc.md5 && echo "no-apikey\nascii\n" | ngc config set
@@ -125,6 +129,7 @@ WORKDIR /workspace
 
 # 设置语言环境为中文，防止 print 中文报错
 ENV LANG C.UTF-8
+
 
 USER trtuser
 RUN ["/bin/bash"]

@@ -74,7 +74,7 @@ or
 
 
 ```bash
-docker run --name zhanglq --gpus all --shm-size=8gb --ipc=host --ulimit memlock=-1 --ulimit stack=67108864 -v /home/zhanglq/workspace:/home/zhanglq/workspace -v /home/zhanglq/workspaces:/home/zhanglq/workspaces -it nvcr.io/nvidia/pytorch:21.10-py3-zhanglq
+docker run --name zhanglq --gpus all --shm-size=8gb --ipc=host --ulimit memlock=-1 --ulimit stack=67108864 -v /home/zhanglq/workspace/:/workspace/  -it nvcr.io/nvidia/pytorch:21.10-py3-zhanglq
 ```
 
 ### 运行TensorRT8样例

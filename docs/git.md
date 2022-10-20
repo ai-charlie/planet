@@ -13,6 +13,7 @@ ssh-keygen -t rsa #三次回车
 ## 2. 本地创建相同名字的仓库 project_name
 撰写代码
 ```bash
+git init
 git add . # 提交所有变动文件
 git commit "first commit"
 git remote add origin git@github.com:ai-charlie/project_name.git

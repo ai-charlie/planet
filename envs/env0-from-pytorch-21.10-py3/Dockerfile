@@ -70,5 +70,5 @@ RUN pip3 install "opencv-python-headless<4.3"
 # 设置语言环境为中文，防止 print 中文报错
 ENV LANG C.UTF-8
 
-USER zhanglq
+USER ${USER_NAME}
 RUN ["/bin/bash"]

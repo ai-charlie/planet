@@ -27,11 +27,11 @@ docker run  --gpus all -p 8889:8889 --shm-size=8gb --ipc=host --ulimit memlock=-
 同时运行jupyter-lab
 
 ```bash
-docker run  --gpus all --shm-size=8gb --ipc=host --ulimit memlock=-1 --ulimit stack=67108864 -v ${PWD}:/workspace/ --name zhanglq_face -it bywin.harbor.com:52/banyun/face-management-service:v0.0.1z
+docker run  --gpus all -p 8889:8889 --shm-size=8gb --ipc=host --ulimit memlock=-1 --ulimit stack=67108864 -v ${PWD}:/workspace/ --rm -it pytorch/pytorch:1.12.1-cuda11.3-cudnn8-devel jupyter-lab --port=8889 --no-browser --ip 0.0.0.0 --allow-root
 ```
 
 ## cuda10.2
 
 ```bash
-docker pull pytorch/pytorch:1.9.0-cuda10.2-cudnn7-devel        
+docker pull pytorch/pytorch:1.9.0-cuda10.2-cudnn7-devel      
 ```

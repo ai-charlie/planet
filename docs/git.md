@@ -15,7 +15,7 @@ ssh-keygen -t rsa #三次回车
 ```bash
 git init
 git add . # 提交所有变动文件
-git commit "first commit"
+git commit -m "first commit"
 git remote add origin git@github.com:ai-charlie/project_name.git
 git branch -M main
 git push -u origin main
@@ -25,7 +25,7 @@ git push -u origin main
 ```bash
 git pull # 拉取
 git add . # 提交所有变动文件
-git commit "XXX commit"
+git commit -m "XXX commit"
 git push -u origin main
 ```
 

@@ -1,7 +1,7 @@
 # 查看适配tensorrt的cuda版本
 # https://developer.download.nvidia.com/compute/cuda/repos/ubuntu1804/x86_64/
 # ARG CUDA_VERSION=10.2
-ARG CUDA_VERSION=11.4.2
+ARG CUDA_VERSION=11.3
 ARG OS_VERSION=20.04
 
 

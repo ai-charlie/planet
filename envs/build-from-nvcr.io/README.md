@@ -1,38 +1,6 @@
 # Build envs
 
-base docker images `nvcr.io/nvidia/pytorch:21.10-py3` 要求NVIDIA Driver release 470 or later.
-
-base python in `requirements.txt`
-
-```
-    Ubuntu 20.04 including Python 3.8 environment
-    NVIDIA CUDA 11.4.2 with cuBLAS 11.6.5.2
-    NVIDIA cuDNN 8.2.4.15
-    NVIDIA NCCL 2.11.4 (optimized for NVLink™)
-    rdma-core 36.0
-    OpenMPI 4.1.2a1
-    OpenUCX 1.11.0rc1
-    GDRCopy 2.3
-    NVIDIA HPC-X 2.9
-    Nsight Systems 2021.3.2.4
-    TensorRT 8.0.3.4 for x64 Linux
-    TensorRT 8.0.2.2 for ARM SBSA Linux
-    SHARP 2.5
-    APEX
-    Nsight Compute 2021.2.2.0
-    Nsight Systems 2021.3.2.4
-    TensorBoard 2.6.0
-    DALI 1.6
-    MAGMA 2.5.2
-    DLProf 1.6.0
-    Jupyter and JupyterLab:
-        Jupyter Client 6.0.0
-        Jupyter Core 4.6.1
-        Jupyter Notebook 6.0.3
-        JupyterLab 2.3.2
-        JupyterLab Server 1.0.6
-        Jupyter-TensorBoard
-```
+base docker images `nvcr.io/nvidia/pytorch:21.10-py3` 
 
 ### Build
 

@@ -3,7 +3,7 @@ ARG CUDNN_VERSION=8
 ARG OS_VERSION=20.04
 
 # 从nvidia 官方镜像库拉取基础镜像
-FROM nvcr.io/nvidia/pytorch:21.10-py3
+FROM nvcr.io/nvidia/tensorrt:21.08-py3
 LABEL maintainer="zhanglq"
 
 ENV TRT_VERSION 8.2.5.1
@@ -12,7 +12,7 @@ SHELL ["/bin/bash", "-c"]
 # Setup user account
 ARG uid=1000
 ARG gid=1000
-ARG USER_NAME="zhanglq"
+ARG USER_NAME="trtusr"
 RUN groupadd -r -f -g ${gid} ${USER_NAME} && useradd -o -r -l -u ${uid} -g ${gid} -ms /bin/bash ${USER_NAME}
 RUN usermod -aG sudo ${USER_NAME}
 RUN echo ${USER_NAME}:${USER_NAME}@nvidia | chpasswd

@@ -40,7 +40,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 # # 安装 TensorRT
 # RUN cd /tmp && sudo apt-get update
 
-# Install TensorRT
+# # Install TensorRT
 # RUN if [ "${CUDA_VERSION}" = "10.2" ] ; then \
 #     v="${TRT_VERSION%.*}-1+cuda${CUDA_VERSION}" &&\
 #     apt-get update &&\
@@ -55,10 +55,10 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 #     python3-libnvinfer=${v}; \
 #     fi
 
-# 阻止tensorrt自动升级
+# # 阻止tensorrt自动升级
 # RUN apt-mark hold libnvinfer8 libnvonnxparsers8 libnvparsers8 libnvinfer-plugin8 libnvinfer-dev libnvonnxparsers-dev libnvparsers-dev libnvinfer-plugin-dev python3-libnvinfer
 
-# 如果想要升级最新版本的tensorrt 
+# # 如果想要升级最新版本的tensorrt 
 # sudo apt-mark unhold libnvinfer8 libnvonnxparsers8 libnvparsers8 libnvinfer-plugin8 libnvinfer-dev libnvonnxparsers-dev libnvparsers-dev libnvinfer-plugin-dev python3-libnvinfer
 
 

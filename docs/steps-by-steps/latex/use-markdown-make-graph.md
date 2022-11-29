@@ -26,3 +26,7 @@ graph TB
   F{fname}
 ```
 
+# drawio
+vscode 拓展
+新建文件，后缀名为drawio，点击即可编辑
+

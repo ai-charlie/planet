@@ -99,6 +99,13 @@ RUN if [ "${CUDA_VERSION}" = "10.2" ] ; then \
     python3-libnvinfer=${v}; \
     fi
 
+# 阻止tensorrt自动升级
+RUN apt-mark hold libnvinfer8 libnvonnxparsers8 libnvparsers8 libnvinfer-plugin8 libnvinfer-dev libnvonnxparsers-dev libnvparsers-dev libnvinfer-plugin-dev python3-libnvinfer
+
+# 如果想要升级最新版本的tensorrt 
+# sudo apt-mark unhold libnvinfer8 libnvonnxparsers8 libnvparsers8 libnvinfer-plugin8 libnvinfer-dev libnvonnxparsers-dev libnvparsers-dev libnvinfer-plugin-dev python3-libnvinfer
+
+
 # Install PyPI packages
 RUN pip3 install --upgrade pip
 RUN pip3 install setuptools>=41.0.0

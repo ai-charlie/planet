@@ -1,8 +1,7 @@
 #!/usr/bin/env bash
 
-
 arg_dockerfile=Dockerfile
-arg_imagename=cuda11.4.2-cudnn8-devel-ubuntu18.04-trt8.4.3
+arg_imagename=nvcr.io/nvidia/pytorch:21.10-py3-zhanglq
 arg_help=0
 
 while [[ "$#" -gt 0 ]]; do case $1 in

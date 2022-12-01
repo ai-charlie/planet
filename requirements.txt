@@ -1,0 +1,10 @@
+sphinx
+myst-parser
+sphinxext-rediraffe
+sphinx_design
+sphinx_copybutton
+ablog
+jupyter_sphinx
+myst_nb
+numpydoc
+sphinx_togglebutton

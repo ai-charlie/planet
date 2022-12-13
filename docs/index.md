@@ -24,28 +24,38 @@ A simple record of coding.
 
 ```
 
-## concepts
+## Concepts
 
 
 ```{toctree}
-:maxdepth: 2
+:maxdepth: 1
 
 concepts/index
 ```
 
-## datasets
+## Datasets
 
 
 ```{toctree}
-:maxdepth: 2
+:maxdepth: 1
 
 datasets/index
 ```
-## projects
+
+## Papers
 
 
 ```{toctree}
-:maxdepth: 2
+:maxdepth: 1
+
+papers/index
+```
+
+## Projects
+
+
+```{toctree}
+:maxdepth: 1
 
 projects/index
 ```
@@ -54,7 +64,7 @@ projects/index
 
 
 ```{toctree}
-:maxdepth: 2
+:maxdepth: 1
 
 resources/index
 ```
@@ -64,7 +74,7 @@ resources/index
 
 
 ```{toctree}
-:maxdepth: 2
+:maxdepth: 1
 
 steps-by-steps/index
 ```

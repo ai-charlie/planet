@@ -76,7 +76,7 @@ def docs(session):
 @nox.session(name="docs-live", reuse_venv=True)
 def docs_live(session):
     session.install("-r", "docs/requirements.txt")
-    session.install("-e", ".", "sphinx-theme-builder[cli]")
+    # session.install("-e", ".", "sphinx-theme-builder[cli]")
 
     # Generate documentation into `build/docs`
     session.run("stb", "serve", "docs/", *session.posargs)

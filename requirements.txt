@@ -1,10 +1,14 @@
 sphinx
+pydata_sphinx_theme
 myst-parser
 sphinxext-rediraffe
 sphinx_design
+sphinx_togglebutton
+sphinx-copybutton
+sphinx-inline-tabs
+sphinx-tabs
 sphinx_copybutton
 ablog
 jupyter_sphinx
 myst_nb
 numpydoc
-sphinx_togglebutton

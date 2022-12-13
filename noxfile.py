@@ -67,7 +67,7 @@ def get_release_versions(version_file):
 @nox.session(reuse_venv=True)
 def docs(session):
     session.install("-r", "./requirements.txt")
-    session.install(".")
+    # session.install(".")
 
     # Generate documentation into `build/docs`
     session.run("sphinx-build", "-b", "dirhtml", "-v", "docs/", "build/docs")

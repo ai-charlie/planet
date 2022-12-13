@@ -12,3 +12,4 @@ ablog
 jupyter_sphinx
 myst_nb
 numpydoc
+matplotlib

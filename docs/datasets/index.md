@@ -3,7 +3,7 @@
 ```{toctree}
 :maxdepth: 1
 
-face
+insightface
 tracking-paper-and-data
 tracking
 ```
